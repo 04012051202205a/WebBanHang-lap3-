@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using WebBanHang.Models;
 namespace WebBanHang.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = SD.Role_Admin)]
     public class CategoryController : Controller
     {
         private readonly ApplicationDbContext _db;
