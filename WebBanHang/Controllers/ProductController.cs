@@ -9,9 +9,11 @@ using System.IO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebBanHang.Controllers
 {
+    [Authorize(Roles =SD.Role_Admin)]
     public class ProductController : Controller
     {
         private readonly ApplicationDbContext _db;
