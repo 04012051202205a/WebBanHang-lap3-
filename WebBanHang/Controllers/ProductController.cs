@@ -18,7 +18,7 @@ namespace WebBanHang.Controllers
         {
             _db = db;
         }
-        public IActionResult Index(int  catid=1)
+        public IActionResult Index(int catid = 1)
 
         {
             var dsSanPham = _db.Products.Include(x => x.Category).Where(x => x.CategoryId == catid).ToList();
@@ -29,6 +29,6 @@ namespace WebBanHang.Controllers
             var dsTheLoai = _db.Categories.ToList();
             return PartialView("CategoryPartial", dsTheLoai);
         }
-      
+
     }
 }
