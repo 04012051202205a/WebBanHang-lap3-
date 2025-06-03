@@ -5,8 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using WebBanHang.Models;
-
-
+using WebBanHang.Areas.Customer.Models;
 
 namespace WebBanHang.Areas.Customer.Controllers
 {
@@ -27,9 +26,18 @@ namespace WebBanHang.Areas.Customer.Controllers
         }
         public IActionResult GetCategory()
         {
-            var dsTheLoai = _db.Categories.ToList();
+            var dsTheLoai = _db.Categories
+      .Select(c => new CategoryWithCountVM
+      {
+          Id = c.Id,
+          Name = c.Name,
+          ProductCount = _db.Products.Count(p => p.CategoryId == c.Id)
+      })
+      .ToList();
+
             return PartialView("CategoryPartial", dsTheLoai);
         }
+
 
     }
 }
